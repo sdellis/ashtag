@@ -1,21 +1,14 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="http://chat.vuejs.org/" target="_blank" rel="noopener">Vue Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank" rel="noopener">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <img src="../assets/ashtag-logo.png" alt="Ash Tag">
+    <h1>Ash trees are in danger!</h1>
+    <p>Can you help us find them all so we can stop the spread of a
+       deadly beetle infestation?</p>
+    <div class="actions">
+      <router-link class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" to="/tag">
+        Tag an ash tree
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -33,20 +26,26 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 h1, h2 {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
   font-weight: normal;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+h1 {
+  font-size: 30px;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+p {
+  padding: 0 30px;
 }
 
 a {
   color: #35495E;
+}
+
+.actions {
+  text-align: center;
 }
 </style>
