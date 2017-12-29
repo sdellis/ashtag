@@ -1,25 +1,33 @@
 <template>
-  <!-- <div id="app">
-    <header>
-      <span>Ash Tag</span>
-    </header>
-    <main>
-      <router-view></router-view>
-    </main>
-  </div> -->
   <div id="app" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
+    <!-- <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">Ashtag</span>
       </div>
-    </header>
-    <div class="mdl-layout__drawer">
+    </header> -->
+    <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <nav v-if="user" class="mdl-navigation">
+        <a class="mdl-navigation__link" href="javascript: history.go(-1)">&lt;</a>
+      </nav>
+      <!-- Title -->
+      <span class="mdl-layout-title">Ashtag</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav v-if="user" class="mdl-navigation">
+        <a class="mdl-navigation__link" href="" @click='logOut'>Logout</a>
+      </nav>
+    </div>
+  </header>
+    <!-- <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">Ashtag</span>
       <nav class="mdl-navigation">
+        <a href="/">Foo</a>
         <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">Home</router-link>
         <router-link class="mdl-navigation__link" to="/tag" @click.native="hideMenu">Tag an ash tree</router-link>
       </nav>
-    </div>
+    </div> -->
     <main class="mdl-layout__content">
       <div class="page-content">
         <router-view></router-view>
@@ -29,13 +37,24 @@
 </template>
 
 <script>
-require('material-design-lite')
+import 'material-design-lite'
+import auth from './helpers/auth'
+// import 'firebaseui/dist/firebaseui.css'
+
 export default {
   name: 'app',
+  computed: {
+    user () {
+      return this.$store.state.user
+    }
+  },
   methods: {
     hideMenu: function () {
       document.getElementsByClassName('mdl-layout__drawer')[0].classList.remove('is-visible')
       document.getElementsByClassName('mdl-layout__obfuscator')[0].classList.remove('is-visible')
+    },
+    logOut () {
+      auth.logout()
     }
   }
 }

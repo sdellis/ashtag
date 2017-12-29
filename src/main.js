@@ -3,13 +3,33 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
+import firebase from 'firebase'
+import {config} from './helpers/firebaseConfig'
+Vue.use(router)
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
+let app
+const initApp = () => {
+  firebase.initializeApp(config)
+  // database.init()
+}
+
+initApp()
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (!app) {
+    /* eslint-disable no-new */
+    app = new Vue({
+      el: '#app',
+      router,
+      template: '<App/>',
+      components: { App },
+      store,
+      created () {
+        this.$store.dispatch('setUser', user || false)
+      }
+    })
+  }
 })
